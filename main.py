@@ -1,15 +1,12 @@
 import tkinter as tk
 from tkcalendar import Calendar, DateEntry
 
+from root import Root
+
 background_color = "#F2CECE"
 active_background_color = "#DDBDBD"
 
-root = tk.Tk()
-root.geometry("920x720")
-#root.resizable(width=False, height=False)
-root.title("Çelebi Seyahat Acentası")
-
-root.configure(bg="cyan")
+root = Root()
 
 photo = tk.PhotoImage(file="icons/toggle_menu.png", )
 photoimage_tm = photo.subsample(20, 20)
@@ -52,17 +49,6 @@ toggle_btn = tk.Button(head_frame, background=background_color, foreground="blac
 toggle_btn.pack(side=tk.LEFT)
 #head_frame.pack(side=tk.TOP, fill=tk.X)
 head_frame.grid(row=0, column=0, sticky="WNES", columnspan=3)
-root.columnconfigure(0, weight=0)
-root.columnconfigure(1, weight=5)
-root.rowconfigure(0, weight=1)
-root.rowconfigure(1, weight=99)
-root.grid_propagate(False)
-
-
-
-
-
-
 
 
 
