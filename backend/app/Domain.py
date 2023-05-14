@@ -30,6 +30,7 @@ class Hotel:
 
 @dataclass
 class Booking:  # abstract, but avoid inheritance with hotel and ticket
+    bookingNumber: str
     destination: str
     departureDate: datetime
     returnDate: datetime | None
@@ -39,7 +40,6 @@ class Booking:  # abstract, but avoid inheritance with hotel and ticket
 
 @dataclass
 class Ticket(Booking):
-    ticketNumber: str
     travelCompany: TravelCompany
     departureCity: str  # from city
 
