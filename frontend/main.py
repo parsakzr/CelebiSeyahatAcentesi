@@ -1,8 +1,8 @@
 import tkinter as tk
 from tkcalendar import  DateEntry
 
-from frontend.root import Root
-from frontend.framehandler import FrameHandler
+from root import Root
+from framehandler import FrameHandler
 
 background_color = "#F2CECE"
 active_background_color = "#DDBDBD"
