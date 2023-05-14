@@ -2,41 +2,57 @@
 
 -- DROP TABLE customer;
 CREATE TABLE customer (
-	cName    			varchar(25) not null, 
-	cSurname    	    varchar(30) not null,
-	cID                 bigint not null primary key,
-    cPoint              int not null
+	cID                 serial not null primary key,
+	cName    			varchar(64) not null, 
+    totalPoints         int not null
 );
 
--- DROP TABLE otel;
-CREATE TABLE otel (
-	oName    			varchar(25) not null, 
-	oRegion    	        varchar(30) not null,
-	oPrice              int not null,
-    oID                 bigint not null primary key
+
+-- DROP TABLE hotel;
+CREATE TABLE hotel (
+	hID                 serial not null primary key,
+	hName    			varchar(64) not null, 
+	region    	        varchar(64) not null,
+	address            	varchar(64),
+	bonus             	numeric(2,2) not null
 );
 
--- DROP TABLE rezervation;
-CREATE TABLE rezervation (
-	rCustomerID         bigint not null primary key,
-	rOtelName    	    varchar(30) not null,
-	rTime               time not null
+-- DROP TABLE travelCompany;
+CREATE TABLE travelCompany (
+	tcID                serial not null primary key,
+	tcName    			varchar(64) not null, 
+	wayOfTravel    		varchar(16) not null, 
+	bonus              	numeric(2,2) not null
 );
 
--- DROP TABLE transportation;
-CREATE TABLE transportation (
-	tCompany    	    varchar(25) not null,
-	tPrice              int not null,
-    tFrom               varchar(25) not null,
-    tTo                 varchar(25) not null,
-    tBonus              numeric(2,2) not null
+
+-- DROP TABLE hotelStay;
+CREATE TABLE hotelStay (
+	hsID   	    		serial not null primary key,
+	hotel				integer not null references hotel(hID),
+	hsPrice             int not null -- per night per person
+);
+
+-- DROP TABLE transport;
+CREATE TABLE transport (
+	tID   	    		serial not null primary key,
+	travelCompany		integer not null references travelCompany(tcID),
+    tFrom               varchar(64) not null,
+    tTo                 varchar(64) not null,
+	tDatetime			timestamp not null,
+	tPrice              int not null -- per person
 );
 
 -- DROP TABLE booking;
 CREATE TABLE booking (
-    bCustomerID         bigint not null primary key,
-	bCompanyName    	varchar(25) not null,
-    bTime               time not null,
-    bFrom               varchar(25) not null,
-    bTo                 varchar(25) not null
+	bID				    serial not null primary key,
+    customerID         	integer not null references customer(cID),
+	typeOfBooking       char not null, -- 'H' for hotel, 'T' for transport
+	hotelStayID         integer references hotelStay(hsID),
+	transport			integer references transport(tID),
+	fromDate			timestamp not null,
+	toDate				timestamp not null,
+	numOfPassengers    	int not null,
+	totalPrice		  	int not null,
+	totalBonus          numeric(2,2) not null
 );

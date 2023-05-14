@@ -6,7 +6,6 @@ import json
 @dataclass
 class Customer:
     name: str
-    email: str
     credit: int = 0
 
     def addCredit(self, amount):
@@ -23,7 +22,7 @@ class TravelCompany:  # Firma
 @dataclass
 class Hotel:
     name: str
-    location: str  # city name, Bolge
+    region: str  # city name, Bolge
     address: str
     bookings: list = field(default_factory=list)  # one to many
 
@@ -36,6 +35,7 @@ class Booking:  # abstract, but avoid inheritance with hotel and ticket
     returnDate: datetime | None
     passengers: int
     price: int
+    bonus: int
 
 
 @dataclass

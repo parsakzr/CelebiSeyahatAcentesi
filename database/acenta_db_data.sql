@@ -1,90 +1,74 @@
 -- -- Çelebi Seyehat Acentası Tablo Şeması Data
 
--- datas of customer table
---                          (cName, cSurname, cID, cPoint)
-INSERT INTO customer VALUES ('Tom','Hanks',18034035,10);
-INSERT INTO customer VALUES ('Jack','Nicholson',22054045,20);
-INSERT INTO customer VALUES ('Benedict','Cumberbatch',12054042,5);
-INSERT INTO customer VALUES ('Leonardo','DiCaprio',42054545,8);
-INSERT INTO customer VALUES ('Christian','Bale',25089404,8);
-INSERT INTO customer VALUES ('Natalie','Portman',14254054,4);
-INSERT INTO customer VALUES ('Lena','Headey',10283892,4);
+-- data for customer table
 
--- datas of otel table
---                      (oName, oRegion, oPrice, oID)
-INSERT INTO otel VALUES ('Burj Al Arab','Dubai',1000,1414);
-INSERT INTO otel VALUES ('Bellagio','Las Vegas',800,8625);
-INSERT INTO otel VALUES ('The Plaza','New York',600,7423);
-INSERT INTO otel VALUES ('Marina Bay Sands Hotel','Singapur',800,9596);
-INSERT INTO otel VALUES ('Çırağan Kempinski','İstanbul',1500,3434);
+INSERT INTO customer(cName, totalPoints) VALUES ('Tom Hanks', 0);
+INSERT INTO customer(cName, totalPoints) VALUES ('Leonardo DiCaprio', 0);
+INSERT INTO customer(cName, totalPoints) VALUES ('Brad Pitt', 0);
+INSERT INTO customer(cName, totalPoints) VALUES ('Johnny Depp', 0);
+INSERT INTO customer(cName, totalPoints) VALUES ('Robert Downey Jr.', 0);
 
--- datas of transportation table
---                                (tCompany, tPrice, tFrom, tTo, tBonus)
-INSERT INTO transportation VALUES ('Uçan Türk Özel Havayolu',500,'İstanbul','Singapur',0.1);
-INSERT INTO transportation VALUES ('Uçan Türk Özel Havayolu',500,'İstanbul','New York',0.1);
-INSERT INTO transportation VALUES ('Uçan Türk Özel Havayolu',500,'İstanbul','Las Vegas',0.1);
-INSERT INTO transportation VALUES ('Uçan Türk Özel Havayolu',500,'İstanbul','Dubai',0.1);
-INSERT INTO transportation VALUES ('Uçan Türk Özel Havayolu',500,'Dubai','Las Vegas',0.2);
-INSERT INTO transportation VALUES ('Uçan Türk Özel Havayolu',500,'Dubai','New York',0.2);
-INSERT INTO transportation VALUES ('Uçan Türk Özel Havayolu',500,'Dubai','Singapur',0.2);
-INSERT INTO transportation VALUES ('Uçan Türk Özel Havayolu',500,'Dubai','İstanbul',0.2);
-INSERT INTO transportation VALUES ('Uçan Türk Özel Havayolu',500,'Las Vegas','Dubai',0.12);
-INSERT INTO transportation VALUES ('Uçan Türk Özel Havayolu',500,'Las Vegas','New York',0.12);
-INSERT INTO transportation VALUES ('Uçan Türk Özel Havayolu',500,'Las Vegas','Singapur',0.12);
-INSERT INTO transportation VALUES ('Uçan Türk Özel Havayolu',500,'Las Vegas','İstanbul',0.12);
-INSERT INTO transportation VALUES ('Uçan Türk Özel Havayolu',500,'New York','Dubai',0.1);
-INSERT INTO transportation VALUES ('Uçan Türk Özel Havayolu',500,'New York','Las Vegas',0.1);
-INSERT INTO transportation VALUES ('Uçan Türk Özel Havayolu',500,'New York','Singapur',0.1);
-INSERT INTO transportation VALUES ('Uçan Türk Özel Havayolu',500,'New York','İstanbul',0.1);
-INSERT INTO transportation VALUES ('Uçan Türk Özel Havayolu',500,'Singapur','Dubai',0.3);
-INSERT INTO transportation VALUES ('Uçan Türk Özel Havayolu',500,'Singapur','Las Vegas',0.3);
-INSERT INTO transportation VALUES ('Uçan Türk Özel Havayolu',500,'Singapur','New York',0.3);
-INSERT INTO transportation VALUES ('Uçan Türk Özel Havayolu',500,'Singapur','İstanbul',0.3);
-INSERT INTO transportation VALUES ('Devlet Demir Yolları',400,'İstanbul','Singapur',0.4);
-INSERT INTO transportation VALUES ('Devlet Demir Yolları',400,'İstanbul','New York',0.4);
-INSERT INTO transportation VALUES ('Devlet Demir Yolları',400,'İstanbul','Las Vegas',0.4);
-INSERT INTO transportation VALUES ('Devlet Demir Yolları',400,'İstanbul','Dubai',0.4);
-INSERT INTO transportation VALUES ('Devlet Demir Yolları',400,'Dubai','Las Vegas',0.35);
-INSERT INTO transportation VALUES ('Devlet Demir Yolları',400,'Dubai','New York',0.35);
-INSERT INTO transportation VALUES ('Devlet Demir Yolları',400,'Dubai','Singapur',0.35);
-INSERT INTO transportation VALUES ('Devlet Demir Yolları',400,'Dubai','İstanbul',0.35);
-INSERT INTO transportation VALUES ('Devlet Demir Yolları',400,'Las Vegas','Dubai',0.26);
-INSERT INTO transportation VALUES ('Devlet Demir Yolları',400,'Las Vegas','New York',0.26);
-INSERT INTO transportation VALUES ('Devlet Demir Yolları',400,'Las Vegas','Singapur',0.26);
-INSERT INTO transportation VALUES ('Devlet Demir Yolları',400,'Las Vegas','İstanbul',0.26);
-INSERT INTO transportation VALUES ('Devlet Demir Yolları',400,'New York','Dubai',0.18);
-INSERT INTO transportation VALUES ('Devlet Demir Yolları',400,'New York','Las Vegas',0.18);
-INSERT INTO transportation VALUES ('Devlet Demir Yolları',400,'New York','Singapur',0.18);
-INSERT INTO transportation VALUES ('Devlet Demir Yolları',400,'New York','İstanbul',0.18);
-INSERT INTO transportation VALUES ('Devlet Demir Yolları',400,'Singapur','Dubai',0.32);
-INSERT INTO transportation VALUES ('Devlet Demir Yolları',400,'Singapur','Las Vegas',0.32);
-INSERT INTO transportation VALUES ('Devlet Demir Yolları',400,'Singapur','New York',0.32);
-INSERT INTO transportation VALUES ('Devlet Demir Yolları',400,'Singapur','İstanbul',0.32);
-INSERT INTO transportation VALUES ('YTUR',450,'İstanbul','Singapur',0.16);
-INSERT INTO transportation VALUES ('YTUR',450,'İstanbul','New York',0.16);
-INSERT INTO transportation VALUES ('YTUR',450,'İstanbul','Las Vegas',0.16);
-INSERT INTO transportation VALUES ('YTUR',450,'İstanbul','Dubai',0.16);
-INSERT INTO transportation VALUES ('YTUR',450,'Dubai','Las Vegas',0.09);
-INSERT INTO transportation VALUES ('YTUR',450,'Dubai','New York',0.09);
-INSERT INTO transportation VALUES ('YTUR',450,'Dubai','Singapur',0.09);
-INSERT INTO transportation VALUES ('YTUR',450,'Dubai','İstanbul',0.09);
-INSERT INTO transportation VALUES ('YTUR',450,'Las Vegas','Dubai',0.5);
-INSERT INTO transportation VALUES ('YTUR',450,'Las Vegas','New York',0.5);
-INSERT INTO transportation VALUES ('YTUR',450,'Las Vegas','Singapur',0.5);
-INSERT INTO transportation VALUES ('YTUR',450,'Las Vegas','İstanbul',0.5);
-INSERT INTO transportation VALUES ('YTUR',450,'New York','Dubai',0.35);
-INSERT INTO transportation VALUES ('YTUR',450,'New York','Las Vegas',0.35);
-INSERT INTO transportation VALUES ('YTUR',450,'New York','Singapur',0.35);
-INSERT INTO transportation VALUES ('YTUR',450,'New York','İstanbul',0.35);
-INSERT INTO transportation VALUES ('YTUR',450,'Singapur','Dubai',0.32);
-INSERT INTO transportation VALUES ('YTUR',450,'Singapur','Las Vegas',0.32);
-INSERT INTO transportation VALUES ('YTUR',450,'Singapur','New York',0.32);
-INSERT INTO transportation VALUES ('YTUR',450,'Singapur','İstanbul',0.32);
+-- data for hotel table
 
--- datas of rezervation table
---                             (rCustomerID, rOtelName, rTime)
-INSERT INTO rezervation VALUES (18034035,'Bellagio','09:30:00');
+INSERT INTO hotel(hName, region, address, bonus) VALUES ('Burj Al Arab','Dubai','Jumeirah Beach Road, Dubai, United Arab Emirates',0.3);
+INSERT INTO hotel(hName, region, address, bonus) VALUES ('Bellagio','Las Vegas','3600 S Las Vegas Blvd, Las Vegas, NV 89109, United States',0.2);
+INSERT INTO hotel(hName, region, address, bonus) VALUES ('The Plaza','New York','768 5th Ave, New York, NY 10019, United States',0.2);
+INSERT INTO hotel(hName, region, address, bonus) VALUES ('Marina Bay Sands Hotel','Singapur','10 Bayfront Ave, Singapore 018956',0.1);
+INSERT INTO hotel(hName, region, address, bonus) VALUES ('Çırağan Kempinski','İstanbul','Çırağan Cd. 32, 34349 Beşiktaş/İstanbul',0.2);
 
--- datas of booking table
---                         (bCustomerID, bCompanyName, bTime, bFrom, bTo)
-INSERT INTO booking VALUES (18034035,'YTUR','08:30:00','Dubai','New York');
+
+-- data for travelCompany table
+INSERT INTO travelCompany(tcName, wayOfTravel, bonus) VALUES ('Uçan Türk Özel Havayolu','Flight',0.1);
+INSERT INTO travelCompany(tcName, wayOfTravel, bonus) VALUES ('TCDD','Train',0.2);
+INSERT INTO travelCompany(tcName, wayOfTravel, bonus) VALUES ('YTUR','Bus',0.1);
+INSERT INTO travelCompany(tcName, wayOfTravel, bonus) VALUES ('IDO','Ferry',0.1);
+
+
+-- data for hotelStay table
+
+INSERT INTO hotelStay(hotel, hsPrice) VALUES (1, 1500);
+INSERT INTO hotelStay(hotel, hsPrice) VALUES (2, 1000);
+INSERT INTO hotelStay(hotel, hsPrice) VALUES (3, 1500);
+INSERT INTO hotelStay(hotel, hsPrice) VALUES (4, 1500);
+INSERT INTO hotelStay(hotel, hsPrice) VALUES (5, 1500);
+INSERT INTO hotelStay(hotel, hsPrice) VALUES (5, 1000);
+INSERT INTO hotelStay(hotel, hsPrice) VALUES (5, 500);
+
+
+-- data for transportation table
+
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (1,'İstanbul','Singapur','2020-12-12 08:30:00',1000);
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (1,'İstanbul','New York','2020-12-12 08:30:00',1500);
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (1,'İstanbul','Las Vegas','2020-12-12 08:30:00',2000);
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (1,'İstanbul','Dubai','2020-12-12 08:30:00',500);
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (1,'Dubai','Las Vegas','2020-12-12 08:30:00',500);
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (1,'Dubai','New York','2020-12-12 08:30:00',500);
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (1,'Dubai','Singapur','2020-12-12 08:30:00',500);
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (1,'Dubai','İstanbul','2020-12-12 08:30:00',500);
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (1,'Las Vegas','Dubai','2020-12-12 08:30:00',500);
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (1,'Las Vegas','New York','2020-12-12 08:30:00',500);
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (1,'Las Vegas','Singapur','2020-12-12 08:30:00',500);
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (1,'Las Vegas','İstanbul','2020-12-12 08:30:00',500);
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (1,'New York','Dubai','2020-12-12 08:30:00',500);
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (1,'New York','Las Vegas','2020-12-12 08:30:00',500);
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (1,'New York','Singapur','2020-12-12 08:30:00',500);
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (1,'New York','İstanbul','2020-12-12 08:30:00',500);
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (2,'İstanbul','Ankara','2020-12-12 08:30:00',200);
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (2,'İstanbul','İzmir','2020-12-12 08:30:00',300);
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (2,'İstanbul','Antalya','2020-12-12 08:30:00',400);
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (2,'İstanbul','Samsun','2020-12-12 08:30:00',500);
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (2,'Ankara','İstanbul','2020-12-12 08:30:00',200);
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (2,'İzmir','İstanbul','2020-12-12 08:30:00',300);
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (2,'Antalya','İstanbul','2020-12-12 08:30:00',400);
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (2,'Samsun','İstanbul','2020-12-12 08:30:00',500);
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (3,'İstanbul','Ankara','2020-12-12 08:30:00',100);
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (3,'İstanbul','İzmir','2020-12-12 08:30:00',200);
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (3,'İstanbul','Antalya','2020-12-12 08:30:00',300);
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (3,'İstanbul','Samsun','2020-12-12 08:30:00',400);
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (3,'Ankara','İstanbul','2020-12-12 08:30:00',100);
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (3,'İzmir','İstanbul','2020-12-12 08:30:00',200);
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (3,'Antalya','İstanbul','2020-12-12 08:30:00',300);
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (3,'Samsun','İstanbul','2020-12-12 08:30:00',400);
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (4,'İstanbul','Bursa','2020-12-12 08:30:00',100);
+INSERT INTO transport(travelCompany, tFrom, tTo, tDatetime, tPrice) VALUES (4,'Bursa','İstanbul','2020-12-12 08:30:00',100);
+
