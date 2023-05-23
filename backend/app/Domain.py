@@ -40,7 +40,7 @@ class Transport:
 
 
 @dataclass
-class HotelStay(Booking):
+class HotelStay:
     id: int
     hotel: Hotel  # many to one relationship
     price: int

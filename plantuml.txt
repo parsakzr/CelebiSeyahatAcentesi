@@ -1,0 +1,65 @@
+@startuml
+
+class Customer {
+  cID: integer
+  cName: str
+  totalPoints: int
+}
+
+class Hotel {
+  hID: integer
+  hName: str
+  region: str
+  address: str
+  bonus: float
+}
+
+class TravelCompany {
+  tcID: integer
+  tcName: str
+  wayOfTravel: str
+  bonus: float
+}
+
+class HotelStay {
+  hsID: integer
+  hotel: integer
+  hsPrice: int
+}
+
+class Transport {
+  tID: integer
+  travelCompany: integer
+  tFrom: str
+  tTo: str
+  tDatetime: timestamp
+  tPrice: int
+}
+
+class Booking {
+  bID: integer
+  customerID: integer
+  typeOfBooking: char
+  hotelStay: integer
+  transport: integer
+  fromDate: timestamp
+  toDate: timestamp
+  numOfPassengers: int
+  totalPrice: int
+  totalBonus: float
+}
+
+Customer "1" -- "1..*" HotelStay: books
+HotelStay "1" -- "1" Hotel: is booked at
+Customer "1" -- "1" Booking: makes
+Booking "1" -- "1" Transport: books
+Booking "1" -- "1" HotelStay: has
+@enduml
+
+
+UML Sequence Diagram:
+//www.plantuml.com/plantuml/png/XP11RYen38RtEONV_d415XM8HRkiH2zWWW6hYHqv7YfktynCWmO9jJkmVtzVvjzKH_CXf_3FBvG9IaAMWD7LO3TKrqmMIijmv8BYi3sJn5i8VGchbv_P6bxvIXLOJcePdLMW_O861ZUyKleFxUz5dL88yyru_JOEsZ5vdPTBGfYsi5fOZ7mmgO1Nv8I7H3DXxtYhI-x7vDnfBYYtcJ-_ur7m4Fj3rB9IYve_Y7eLQzXVzAj_X1fuZq-cfVLfVNjA5BrEXMaPOxzPN1qJ5ED8JsdlhOvx_mVLJvRp0jTZs-EnimugGuMYB3wEfiFOoSNqn8cUFcYdScBBzQxPa1o7dBu1
+
+
+UML UseCase Diagram:
+//www.plantuml.com/plantuml/png/TPB1Rjim44Jl-nK3d-A3ym56KCGLKFZM57O-O2Dk5S8KIN3NGOMY_zvGYg3MK4uBxPkP7GbwLEDYrpvGa9y6IoY-UpKuNwGrdoBfnSVCXNjaRY_SoSc68AYOY5jB1SrLBVLIm8hcOtVe9BP3tHm-DfjpuJS9Q5AVENhHJQNdsN1C9a7hwaXKqpbsGMRNd7SQrAJVu3S13NQxBxWxINXNurqNDQTYN6jlR_cKZvFny0zx6f-cYOVxUzmzg-1hYbV5K_BHTBk7_3A9JedmsJ4yx7OuO8zlFheRYE-v3YMiLBbnBa2NLbMmHoUcoEmTOQNah6Bdy3A2F0AYFqI7wLr_NAKCc3xdN6hxFvpkg_6m2DPzuy5pWpsUisCJc6ylOaghIOlbk3XUHmc_iG_yueEtWOWU9RhwD_u5
