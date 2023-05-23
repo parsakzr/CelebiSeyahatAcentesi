@@ -48,11 +48,11 @@ CREATE TABLE booking (
 	bID				    serial not null primary key,
     customerID         	integer not null references customer(cID),
 	typeOfBooking       char not null, -- 'H' for hotel, 'T' for transport
-	hotelStayID         integer references hotelStay(hsID),
+	hotelStay         	integer references hotelStay(hsID),
 	transport			integer references transport(tID),
 	fromDate			timestamp not null,
 	toDate				timestamp not null,
 	numOfPassengers    	int not null,
-	totalPrice		  	int not null,
-	totalBonus          numeric(2,2) not null
+	totalPrice		  	int,
+	totalBonus          numeric(2,2)
 );
