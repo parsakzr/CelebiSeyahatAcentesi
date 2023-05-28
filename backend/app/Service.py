@@ -47,9 +47,14 @@ class Service:
     def getCustomerByName(self, customerName):
         return self.repository.getCustomerByName(customerName)
 
-    def addCustomerBonus(self, customerID, bonus):
+    def addCustomerBonus(self, customerID, amount):
         customer = self.getCustomer(customerID)
-        customer.bonus += bonus
+        customer.bonus += amount
+        self.repository.updateCustomerBonus(customerID, customer.bonus)
+
+    def payCustomerBonus(self, customerID, amount):
+        customer = self.getCustomer(customerID)
+        customer.bonus -= amount
         self.repository.updateCustomerBonus(customerID, customer.bonus)
 
     def deleteCustomer(self, customerID):
