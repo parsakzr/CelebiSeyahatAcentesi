@@ -81,12 +81,12 @@ class Repository:
     def createBooking(self, booking: Booking):
         cur = self.conn.cursor()
         cur.execute(
-            "INSERT INTO booking (customer, typeOfBooking, hotelStay, transport, fromDate, toDate, numOfPassengers, totalPrice, totalBonus) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s) RETURNING bookingID;",
+            "INSERT INTO booking (customerID, typeOfBooking, hotelStay, transport, fromDate, toDate, numOfPassengers, totalPrice, totalBonus) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s) RETURNING bID;",
             (
-                booking.customerID,
+                booking.customer,
                 booking.typeOfBooking,
-                booking.hotelStayID,
-                booking.transportID,
+                booking.hotelStay,
+                booking.transport,
                 booking.fromDate,
                 booking.toDate,
                 booking.numOfPassengers,
@@ -129,6 +129,17 @@ class Repository:
         cur.close()
         return travelCompany
 
+    def getAllTravelCompanies(self):
+        cur = self.conn.cursor()
+        cur.execute("SELECT * FROM travelcompany")
+        rows = cur.fetchall()
+        travelCompanyList = []
+        for row in rows:
+            travelCompanyList.append(TravelCompany(*row))
+
+        cur.close()
+        return travelCompanyList
+
     def getHotel(self, hotelID):
         cur = self.conn.cursor()
         cur.execute("SELECT * FROM hotel WHERE hID = %s", (hotelID,))
@@ -142,6 +153,17 @@ class Repository:
         hotel = Hotel(*cur.fetchone())
         cur.close()
         return hotel
+
+    def getAllHotels(self):
+        cur = self.conn.cursor()
+        cur.execute("SELECT * FROM hotel")
+        rows = cur.fetchall()
+        hotelList = []
+        for row in rows:
+            hotelList.append(Hotel(*row))
+
+        cur.close()
+        return hotelList
 
     def getTransport(self, transportID):
         cur = self.conn.cursor()
@@ -192,21 +214,23 @@ class Repository:
         cur.close()
         return transportList
 
-    def getAllHotelStaysBy(self, hotel=None, region=None):
+    def getAllHotelStaysBy(self, hotelname=None, region=None):
         cur = self.conn.cursor()
 
-        query = "SELECT * FROM hotelstay "
+        query = "SELECT hid FROM hotel "
         query_args = []
-        if hotel is not None:
-            query_args.append("hotel = %s ")
+        if hotelname is not None:
+            query_args.append("hname = %s")
         if region is not None:
-            query_args.append("region = %s ")
+            query_args.append("region = %s")
 
         if len(query_args) > 0:
             query += "WHERE "
             query += " AND ".join(query_args)
 
-        query_arg_values = tuple(x for x in (hotel, region) if x is not None)
+        query_arg_values = tuple(x for x in (hotelname, region) if x is not None)
+
+        query = "SELECT * FROM hotelstay WHERE hotel in (" + query + ")"
 
         cur.execute(query, query_arg_values)
 
@@ -221,7 +245,7 @@ class Repository:
 
     def getBooking(self, bookingID):
         cur = self.conn.cursor()
-        cur.execute("SELECT * FROM booking WHERE bookingID = %s", (bookingID,))
+        cur.execute("SELECT * FROM booking WHERE bID = %s", (bookingID,))
         booking = Booking(*cur.fetchone())
         cur.close()
         return booking
@@ -303,4 +327,4 @@ class Repository:
 
 if __name__ == "__main__":
     db = Repository()
-    print(db.getAllTransportsBy(tTo="New York"))
+    print(db.getAllTransportsBy())

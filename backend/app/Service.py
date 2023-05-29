@@ -1,5 +1,13 @@
-from Domain import Ticket, HotelBooking, Booking, TravelCompany, Hotel, Agency, Customer
-from Repository import Repository
+from app.Domain import (
+    Transport,
+    HotelStay,
+    Booking,
+    TravelCompany,
+    Hotel,
+    Agency,
+    Customer,
+)
+from app.Repository import Repository
 
 # from flask import Flask, request, jsonify
 
@@ -49,13 +57,13 @@ class Service:
 
     def addCustomerBonus(self, customerID, amount):
         customer = self.getCustomer(customerID)
-        customer.bonus += amount
-        self.repository.updateCustomerBonus(customerID, customer.bonus)
+        customer.totalPoints += amount
+        self.repository.updateCustomerBonus(customerID, customer.totalPoints)
 
     def payCustomerBonus(self, customerID, amount):
         customer = self.getCustomer(customerID)
-        customer.bonus -= amount
-        self.repository.updateCustomerBonus(customerID, customer.bonus)
+        customer.totalPoints -= amount
+        self.repository.updateCustomerBonus(customerID, customer.totalPoints)
 
     def deleteCustomer(self, customerID):
         self.repository.deleteCustomer(customerID)
@@ -76,6 +84,10 @@ class Service:
 
     def getTravelCompanyByName(self, travelCompanyName):
         return self.repository.getTravelCompanyByName(travelCompanyName)
+
+    def getAllTravelCompanyNames(self):
+        list = self.repository.getAllTravelCompanies()
+        return [travelCompany.name for travelCompany in list]
 
     def deleteTravelCompany(self, travelCompanyID):
         travelCompany = self.repository.getTravelCompany(travelCompanyID)
@@ -105,6 +117,10 @@ class Service:
 
     def getHotelByName(self, hotelName):
         return self.repository.getHotelByName(hotelName)
+
+    def getAllHotelNames(self):
+        list = self.repository.getAllHotels()
+        return [hotel.name for hotel in list]
 
     def deleteHotel(self, hotelID):
         hotel = self.repository.getHotel(hotelID)
@@ -148,8 +164,8 @@ class Service:
     def getHotelStay(self, hotelStayID):
         return self.repository.getHotelStay(hotelStayID)
 
-    def getAllHotelStaysBy(self, hotel=None, fromDate=None, toDate=None):
-        return self.repository.getAllHotelStaysBy(hotel, fromDate, toDate)
+    def getAllHotelStaysBy(self, hotelname=None, region=None):
+        return self.repository.getAllHotelStaysBy(hotelname, region)
 
     def deleteHotelStay(self, hotelStayID):
         self.repository.deleteHotelStay(hotelStayID)
@@ -167,7 +183,7 @@ class Service:
         booking = Booking(
             customer=customerID,
             typeOfBooking="T",
-            transport=ticket,
+            transport=ticketID,
             fromDate=ticket.tDatetime,
             toDate=ticket.tDatetime,
             numOfPassengers=numOfPassengers,
@@ -183,7 +199,7 @@ class Service:
 
         return bookingID
 
-    def bookHotel(self, hotelStayID, customerID, numOfPassengers):
+    def bookHotel(self, hotelStayID, customerID, numOfPassengers, fromDate, toDate):
         hotelStay = self.repository.getHotelStay(hotelStayID)
         bonus = self.repository.getHotel(hotelStay.hotel).bonus
         customer = self.repository.getCustomer(customerID)
@@ -195,23 +211,28 @@ class Service:
         totalBonus = bonus * numOfPassengers
 
         booking = Booking(
+            id=-1,
             customer=customerID,
             typeOfBooking="H",
-            hotelStay=hotelStay,
-            fromDate=hotelStay.fromDate,
-            toDate=hotelStay.toDate,
+            hotelStay=hotelStay.id,
+            transport=None,
+            fromDate=fromDate,
+            toDate=toDate,
             numOfPassengers=numOfPassengers,
             totalPrice=totalPrice,
             totalBonus=totalBonus,
         )
 
-        bookingID = self.repository.createBooking(hotelStay, customer)
+        bookingID = self.repository.createBooking(booking)
         if not bookingID:
             return None
 
         self.agency.kasa += booking.totalPrice
 
         return bookingID
+
+    def getBooking(self, bookingID):
+        return self.repository.getBooking(bookingID)
 
     def cancelBooking(self, bookingID):
         booking = self.repository.getBooking(bookingID)
@@ -221,8 +242,8 @@ class Service:
 
         # subtract bonus from customer
         customer = self.repository.getCustomer(booking.customer)
-        customer.bonus -= booking.totalBonus
-        self.repository.updateCustomerBonus(customer.id, customer.bonus)
+        customer.totalPoints -= booking.totalBonus
+        self.repository.updateCustomerBonus(customer.id, customer.totalPoints)
 
         self.agency.kasa -= booking.totalPrice
 

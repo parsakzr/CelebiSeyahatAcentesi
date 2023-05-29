@@ -49,10 +49,10 @@ class HotelStay:
 @dataclass
 class Booking:
     id: int
-    customer: Customer
+    customer: int
     typeOfBooking: str  # 'H' for hotel, or 'T' for transport
-    hotelStay: HotelStay | None
-    transport: Transport | None
+    hotelStay: int | None  # id
+    transport: int | None  # id
     fromDate: datetime
     toDate: datetime
     numOfPassengers: int
